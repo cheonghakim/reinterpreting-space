@@ -17,6 +17,12 @@ See `output/proof_summary.txt` for the live, authoritative PASS/FAIL table
 — the manuscript this repository certifies (Markdown source:
 [`lapse_gradient_topology_manuscript_en.md`](lapse_gradient_topology_manuscript_en.md)).
 
+**[Interactive 3D visualization →](https://cheonghakim.github.io/reinterpreting-space/)**
+(`docs/`, plain three.js, no build step) — drag `λ` across the two marked
+thresholds and watch the lapse surface's critical points appear, move, and
+annihilate in real time, live-classified by a Newton solver running in the
+browser (`2S₁ → 3S₁+S₂ → 2S₁`).
+
 **Motivation.** The starting idea was to treat the lapse function
 `N = dτ/dt` of a static spacetime — the local gravitational-redshift factor —
 as a scalar field in its own right, and to ask whether the *global shape* of

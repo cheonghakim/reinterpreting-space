@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lapse-Gradient Topology — Interactive MP Bifurcation</title>
+<meta name="description" content="Interactive 3D visualization of the Majumdar-Papapetrou lapse critical-point bifurcation, gradient-skeleton manifolds, basins of attraction, and the asymmetric cusp unfolding, from the validated_mp paper.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="title-block">
+      <h1>Lapse-Gradient Topology of Static Multi-Black-Hole Spacetimes</h1>
+      <p class="subtitle">Interactive visualization of the Majumdar–Papapetrou lapse critical-point bifurcation</p>
+    </div>
+    <nav class="links">
+      <a href="lapse_gradient_topology_manuscript_en.pdf">Paper (PDF)</a>
+      <a href="https://github.com/cheonghakim/reinterpreting-space">Repository</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="viz-section">
+    <div id="canvas-wrap">
+      <canvas id="scene"></canvas>
+      <div id="phase-banner">
+        <span id="phase-label">2S₁</span>
+        <span id="phase-detail"></span>
+      </div>
+      <div id="hint">drag to orbit · scroll to zoom</div>
+    </div>
+
+    <aside class="controls">
+      <div class="control-block">
+        <label for="lambda-slider">
+          mass ratio <strong>λ</strong>
+          <span id="lambda-value">1.000</span>
+        </label>
+        <div class="slider-wrap">
+          <input type="range" id="lambda-slider" min="0.10" max="1.90" step="0.001" value="1.0">
+          <div class="tick tick-minus" style="left:calc((0.673877 - 0.10) / (1.90 - 0.10) * 100%)" title="λ₋ ≈ 0.6739 (pitchfork)"></div>
+          <div class="tick tick-plus" style="left:calc((1.136252 - 0.10) / (1.90 - 0.10) * 100%)" title="λ₊ ≈ 1.1363 (fold)"></div>
+        </div>
+        <div class="slider-labels">
+          <span>0.10</span>
+          <span class="tick-caption tick-caption-minus">λ₋</span>
+          <span class="tick-caption tick-caption-plus">λ₊</span>
+          <span>1.90</span>
+        </div>
+      </div>
+
+      <div class="control-block">
+        <label for="eps-slider">
+          asymmetry <strong>ε</strong> — masses (1+ε, 1−ε)
+          <span id="eps-value">0.000</span>
+        </label>
+        <input type="range" id="eps-slider" min="-0.3" max="0.3" step="0.001" value="0">
+        <div class="hint-line">ε≠0 breaks the pitchfork into a cusp — see the fold curve unfold live.</div>
+      </div>
+
+      <div class="control-block buttons">
+        <button id="play-btn">▶ Sweep λ</button>
+        <button id="reset-btn">Reset camera</button>
+      </div>
+
+      <div class="control-block">
+        <div class="legend-title">Color by</div>
+        <div class="segmented" id="color-mode">
+          <button class="seg-btn active" data-mode="height">Height (N)</button>
+          <button class="seg-btn" data-mode="basin">Basin</button>
+        </div>
+        <label class="checkbox-row">
+          <input type="checkbox" id="manifold-toggle" checked>
+          show stable/unstable manifolds
+        </label>
+      </div>
+
+      <div class="control-block legend">
+        <div class="legend-title">Legend</div>
+        <div class="legend-row"><span class="swatch source"></span> source mass (P₁=λ, P₂=1+ε, P₃=1−ε)</div>
+        <div class="legend-row"><span class="swatch s1"></span> S₁ — index-1 lapse saddle</div>
+        <div class="legend-row"><span class="swatch s2"></span> S₂ — index-2 lapse saddle</div>
+        <div class="legend-row"><span class="line-swatch solid"></span> unstable manifold (flows into a source)</div>
+        <div class="legend-row"><span class="line-swatch dashed"></span> stable manifold (flows in from a ridge/S₂)</div>
+      </div>
+
+      <div class="control-block counts">
+        <div class="legend-title">Detected in this frame</div>
+        <div id="counts-readout">—</div>
+      </div>
+
+      <p class="caption">
+        The surface is the lapse field <code>N(x,y) = 1/U(x,y;λ,ε)</code>,
+        height-lifted as in the paper's <code>(x,y,z,N)</code> graph
+        construction — <em>not</em> a new physical dimension, just a way to
+        see the redshift field as a landscape. The curves are the
+        <strong>gravitational gradient skeleton</strong>'s separatrices: from
+        each S₁ saddle, two solid branches trace where the descending lapse
+        flow runs away to (usually a source — this <em>is</em> the basin
+        boundary), and two dashed branches trace where it flows in from.
+        Toggle <strong>Basin</strong> coloring to see the resulting
+        source-of-attraction partition directly. Drag <strong>ε</strong> away
+        from 0 to watch the symmetric pitchfork unfold into the paper's cusp.
+      </p>
+    </aside>
+  </section>
+
+  <section class="explainer">
+    <h2>What you're looking at</h2>
+    <div class="explainer-grid">
+      <div>
+        <h3>The bifurcation</h3>
+        <p>
+          For the symmetric three-center family <code>(M₁,M₂,M₃)=(1,1,λ)</code>, the
+          finite critical-point structure of the lapse changes twice as λ increases:
+          a symmetry-breaking <strong>pitchfork</strong> at
+          <code>λ₋ ≈ 0.6739</code> spawns an off-axis pair of S₁ saddles, and a
+          <strong>fold</strong> at <code>λ₊ ≈ 1.1363</code> annihilates an S₁/S₂ pair
+          back down — the pattern <code>2S₁ → 3S₁+S₂ → 2S₁</code>.
+        </p>
+      </div>
+      <div>
+        <h3>Why a landscape, not a contour plot</h3>
+        <p>
+          A contour or Reeb-graph view of the same field only tracks how level-set
+          components merge. The gradient skeleton
+          <code>𝒮ₙ = (C, I, V, Γ, ℬ)</code> additionally encodes <em>which</em>
+          critical points are saddles of which index (<code>I</code>), the
+          separatrix/heteroclinic structure connecting them (<code>Γ</code>,
+          the solid/dashed curves drawn here), and which source each region
+          flows into (<code>ℬ</code>, the Basin coloring toggle) — all
+          information a level-set summary alone discards. See the paper's
+          comparison section for the full argument.
+        </p>
+      </div>
+      <div>
+        <h3>The cusp unfolding</h3>
+        <p>
+          Set <code>ε≠0</code> and the two off-axis S₁ saddles born at the
+          pitchfork no longer appear symmetrically at the same λ — the
+          transition becomes a smooth fold whose location
+          <code>λ_fold(ε)</code> drifts away from λ₋ as
+          <code>C|ε|^(2/3)</code>, the paper's validated cusp-scaling law.
+          Sweep λ at a fixed <code>ε≠0</code> to feel the fold replace the
+          sharp pitchfork.
+        </p>
+      </div>
+      <div>
+        <h3>How this differs from the certified results</h3>
+        <p>
+          This page finds critical points and traces manifolds with a plain
+          (uncertified) Newton solver and fixed-step integrator, for a smooth
+          real-time picture. The repository's <code>proof/</code> scripts
+          certify the same bifurcation values and root counts rigorously,
+          with outward-rounded interval arithmetic and arbitrary-precision
+          ball arithmetic — see
+          <a href="https://github.com/cheonghakim/reinterpreting-space">the repository</a>
+          for the machine-checked version of what this page shows
+          interactively. The manifold/basin curves shown here are not
+          certified at all — they're for intuition only.
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>validated_mp / reinterpreting-space — three.js visualization, no build step, MIT-style use.</p>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
