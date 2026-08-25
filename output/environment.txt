@@ -1,0 +1,31 @@
+validated_mp reproducibility record
+====================================
+Julia version:            1.12.7 (via juliaup, installed 2026-08-24)
+Platform:                  x86_64-w64-mingw32, Windows NT, 64-bit
+OS:                        Windows 11 Pro for Workstations
+
+Package versions (from Project.toml / Manifest.toml):
+  Arblib                  v1.8.1
+  ForwardDiff              v1.4.5
+  IntervalArithmetic       v1.0.11
+  IntervalRootFinding      v0.7.2  (installed; not yet used by any script)
+
+Precision configurations exercised:
+  BigFloat (IntervalArithmetic.jl):  100/128/200/256-bit mantissa depending
+                                       on section (each script states its
+                                       own setprecision call explicitly)
+  Arb (Arblib.jl):                    256-bit
+
+Full build (sec 2,6,7,8,9,10,11-partial,12) completed and PASSING as of
+2026-08-25; see output/proof_summary.txt for the authoritative run.
+
+Rounding: IntervalArithmetic.jl v1.x uses correctly (outward) rounded
+interval arithmetic per its "cset"/decorated-interval design (IEEE 1788
+inspired); Arblib.jl wraps Arb/FLINT ball arithmetic, which tracks a
+midpoint + rigorous error radius.
+
+git commit hash: N/A — this directory is not (yet) a git repository.
+
+This file is regenerated informationally alongside each proof_all.jl run;
+see proof_summary.txt in this directory for the actual PASS/FAIL/UNRESOLVED
+certificate results of the most recent run.

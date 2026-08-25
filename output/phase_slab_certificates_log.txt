@@ -1,0 +1,17 @@
+=== Phase-slab on-axis degeneracy exclusion (sec 11) ===
+Julia version: 1.12.7
+Run date: 2026-08-25T14:54:39.752
+
+lambda_minus = [0.6738774744707380113762233701706991355091, 0.6738774744707380113762233701706991355473]
+lambda_plus  = [1.136252210664680901518351252491455689106, 1.136252210664680901518351252491455689159]
+Middle slab searched: lambda in [0.6748774744707380113970400518824208206802, 1.135252210664680901497534570779734003974]
+(excludes the +-0.001 neighborhoods of lambda_-, lambda_+ already covered by pitchfork_local.jl / fold_local.jl)
+
+Fold-curve search:      leaves=32 unique=0 unresolved=0 (runtime incl. pitchfork search: 5.1s)
+Pitchfork-curve search:  leaves=56 unique=0 unresolved=0
+
+CERT_NO_FOLD_DEGENERACY_MIDDLE_SLAB      = PASS
+CERT_NO_PITCHFORK_DEGENERACY_MIDDLE_SLAB = PASS
+CERT_PHASE_SLABS_ONAXIS_OVERALL = PASS
+
+NOTE: off-axis degeneracy and the tail slabs (0,lambda_-) and (lambda_+,infty) are NOT covered by interval computation in this script — see docstring / README.md "Phase-diagram tails (not certified)". This certificate is scoped to the on-axis mechanism across the middle slab only.

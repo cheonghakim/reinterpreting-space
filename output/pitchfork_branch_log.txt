@@ -1,0 +1,27 @@
+=== Pitchfork off-axis existence/uniqueness (sec 7) ===
+Julia version: 1.12.7
+Run date: 2026-08-25T14:54:27.678
+
+--- Part A: global monotonicity of Q(0,lambda) ---
+Q(0,lambda_-) = [-5.181701133056666775231811117680239742669600218661768831014222082101155081897456e-76, 5.008977761954777882724084080424231751247280211373043203313748012697783245834208e-76]   contains 0? true
+r_axis enclosure over full lambda range: [0.1855652109482110422924511204577825466652424823096195661726855062176110027744645, 0.1867088620038714535998293235296586886060982798468854266056779250843878998272734]
+dQ(0,lambda)/dlambda over FULL range = [3.27311371659834829936321338255833817946151299066738037234872815046803684645081, 3.854557679144411218454482409577720945414661321076417959282785913314358053833672]   > 0 throughout? true
+=> Q(0,lambda) > 0 for lambda in (lambda_-, lambda_-+0.001] : true
+=> Q(0,lambda) < 0 for lambda in [lambda_--0.001, lambda_-) : true
+Part A overall: PASS
+
+--- Part B: existence+uniqueness slabs, lambda in [lambda_-, lambda_-+0.001], N=32 ---
+slab 1/32: Vrr>0=true Qs<0=true exist=true Qsmax<0=true => PASS
+slab 32/32: Vrr>0=true Qs<0=true exist=true Qsmax<0=true => PASS
+worst-case sup(Q(s_max)) over all UP slabs = -0.002783553561040473 (must be < 0)
+Part B overall: PASS  [32/32]
+
+--- Part C: NO off-axis root slabs, lambda in [lambda_--0.001, lambda_-], N=32 ---
+slab 1/32: Qs<0=true => PASS
+slab 32/32: Qs<0=true => PASS
+Part C overall: PASS  [32/32]
+
+CERT_PITCHFORK_OFFAXIS_EXISTENCE  = PASS
+CERT_PITCHFORK_OFFAXIS_UNIQUENESS = PASS
+CERT_PITCHFORK_NOROOT_BELOW       = PASS
+CERT_PITCHFORK_BRANCH_OVERALL     = PASS

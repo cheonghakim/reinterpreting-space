@@ -1,0 +1,3 @@
+name,quantity,lo,hi,verdict,note
+phase_slab_middle,fold_curve_unique_count,0,,PASS,"expect 0"
+phase_slab_middle,pitchfork_curve_unique_count,0,,PASS,"expect 0"

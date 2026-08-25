@@ -1,0 +1,9 @@
+=== Brouwer degree boundary winding-number cross-check (sec 10) ===
+Julia version: 1.12.7
+Run date: 2026-08-25T14:54:35.008
+
+lambda=0.5: boundary degree = -2  (6 quadrant segments; raw boundary degree=1, minus 3 sources = -2)  => PASS
+lambda=0.8: boundary degree = -2  (6 quadrant segments; raw boundary degree=1, minus 3 sources = -2)  => PASS
+lambda=1.2: boundary degree = -2  (6 quadrant segments; raw boundary degree=1, minus 3 sources = -2)  => PASS
+
+CERT_BOUNDARY_DEGREE = PASS

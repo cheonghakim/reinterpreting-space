@@ -1,0 +1,21 @@
+=== MP VALIDATED NUMERICS SUMMARY ===
+
+[PASS] Arb constants
+[PASS] pitchfork V_rr > 0 / Q_s < 0 (local box)
+[PASS] pitchfork off-axis existence (sec 7)
+[PASS] pitchfork off-axis uniqueness (sec 7)
+[PASS] fold nondegeneracy (U_rlambda, U_rrr != 0)
+[PASS] lambda=0.5 completeness (sec 9)
+[PASS] lambda=0.8 completeness (sec 9)
+[PASS] lambda=1.2 completeness (sec 9)
+[PASS] Brouwer degree consistency (sec 10, index-sum + boundary winding)
+[PASS] phase-wide degeneracy exclusion (sec 11, ON-AXIS MIDDLE SLAB ONLY -- not full scope, see README)
+[PASS] asymmetric cusp scaling (sec 12)
+[UNRESOLVED / NOT IMPLEMENTED] phase-wide degeneracy exclusion, off-axis + tail slabs (sec 11 remainder -- see README "Phase-diagram tails (not certified)")
+
+UNRESOLVED BOXES (sec 9 completeness searches): 0 (sec 7/10/11/12's own box-subdivision searches each separately require, and here achieved, zero unresolved boxes as part of their own PASS criterion above)
+OVERALL STATUS: PARTIALLY CERTIFIED (sec 11 off-axis+tail scope excluded — see list above)
+
+Runtime: 30.9 s
+Julia version: 1.12.7
+Run date: 2026-08-25T14:54:57.198
