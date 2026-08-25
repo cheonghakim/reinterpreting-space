@@ -27,6 +27,49 @@ ideal testbed because the lapse is an explicit harmonic function, so this
 question becomes a tractable (but nontrivial) problem in bifurcation theory
 and validated numerics rather than a purely numerical experiment.
 
+Since `N = U⁻¹`, the finite critical points of the lapse coincide exactly
+with the equilibria of a positive Coulomb potential — so this sits squarely
+inside the classical point-charge equilibrium literature around **Maxwell's
+conjecture** (Gabrielov–Novikov–Shapiro, Tsai, Uteshev–Yashina). In
+particular, the `(1,1,λ)` mass-ratio family studied here is, up to
+relabeling, the one-dimensional slice `s=1, t=λ` of the two-parameter
+equilateral `1:s:t` charge family Tsai already analyzed, and the lapse/
+gradient itself was already used as a diagnostic on an MP binary by Semerák
+and Basovník. The paper is explicit about this and deliberately narrows its
+novelty claim accordingly: it is **not** a new equilibrium-counting result.
+What is new is what happens once that slice is reinterpreted as a
+relativistic lapse field — the closed-form degeneracy coordinates on it, the
+resulting 3-D lapse Morse-index reclassification, explicit pitchfork/fold
+normal-form coefficients, the cusp-unfolding coefficient for the asymmetric
+family, and the independent validated-numerics certification this repository
+provides.
+
+**Why this matters.** Beyond the specific bifurcation values, the paper makes
+two claims worth stating plainly:
+
+- **Methodological.** The local inequalities and root-existence/uniqueness
+  arguments aren't just numerically plausible — they're backed by
+  outward-rounded interval enclosures and Krawczyk-style existence/
+  uniqueness certificates, i.e. machine-checked mathematical certainty rather
+  than floating-point suggestion. Pairing analytic normal-form bifurcation
+  theory with this kind of validated-numerics certification is uncommon in
+  exact-solution GR work, and the pattern (reduce to a normal form → certify
+  its coefficients' signs rigorously → cross-check via an independent
+  arithmetic library) is reusable beyond this specific problem.
+- **Conceptual.** Treating the lapse/redshift field as a Morse function —
+  classifying a static spacetime by its critical points, their indices, and
+  the invariant-manifold structure of the gradient flow, rather than just
+  visualizing level surfaces — gives a more structured descriptor (the
+  "gravitational gradient skeleton") than basin adjacency or level-set
+  connectivity alone, as demonstrated concretely by the three MP phases in
+  this repository's output.
+
+**Honest limitation.** The scope is intentionally narrow: local bifurcations
+plus completeness at three representative `λ` values are certified, but a
+full global theorem over all `0<λ<∞` is not — off-axis degeneracy exclusion
+and both asymptotic tails remain open (see `output/proof_summary.txt` and
+the paper's "Limitations and Open Problems" section).
+
 **Abstract (short).** For the equilateral three-center MP family
 `(M1,M2,M3)=(1,1,λ)`, the finite lapse critical structure undergoes two exact
 bifurcations — a symmetry-breaking pitchfork at `λ₋ ≈ 0.6739` and a fold at
@@ -36,9 +79,23 @@ root certification, Brouwer-index consistency, and independent validated
 numerics (outward-rounded interval arithmetic and arbitrary-precision ball
 arithmetic) — this repository is that independent numerical certification.
 For the asymmetric family `(1+ε,1-ε,λ)`, the pitchfork unfolds into a cusp
-with a validated `|ε|^(2/3)` scaling law. The paper also compares this
-gradient-skeleton descriptor against contour/Reeb-type representations of
-the same scalar field.
+with a validated `|ε|^(2/3)` scaling law. The paper also positions this
+gradient-skeleton descriptor against both the classical Coulomb-equilibrium
+literature and contour/Reeb-type representations of the same scalar field
+(20 references; see the manuscript's "Related Work and Positioning" and
+"Literature Cross-Check" sections).
+
+Rebuild the PDF from the Markdown source (with real KaTeX-rendered math,
+not raw `$$...$$` text) whenever the manuscript changes:
+
+```bash
+cd tools/pdf
+npm install   # first time only
+npm run pdf
+```
+
+Requires Node.js and a local Chrome or Edge install (auto-detected; override
+with `CHROME_PATH` if needed). See `tools/pdf/build_pdf.js`.
 
 ## Results at a glance
 

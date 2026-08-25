@@ -1,0 +1,15 @@
+{
+  "name": "validated_mp-pdf-build",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Renders the project's Markdown+LaTeX manuscript to a PDF with real KaTeX-rendered math (not raw $$ text).",
+  "scripts": {
+    "pdf": "node build_pdf.js"
+  },
+  "dependencies": {
+    "katex": "^0.18.4",
+    "markdown-it": "^15.0.0",
+    "markdown-it-texmath": "^1.0.0",
+    "puppeteer-core": "^24.43.1"
+  }
+}

@@ -68,40 +68,33 @@ Finally, we compare the proposed gradient-skeleton representation with contour/R
 
 ---
 
+
 ## 1. Introduction
 
-In general relativity, the lapse function \(N\) of a static spacetime is not merely a coordinate bookkeeping device. For static observers, it gives the ratio between proper time and coordinate time,
+Static gravitational fields admit a natural scalar description through the lapse function. For a static observer in a spacetime written as
 
 $$
-N=\frac{d\tau}{dt},
+ds^2=-N^2c^2dt^2+h_{ij}dx^idx^j,
 $$
 
-and therefore directly represents the local gravitational redshift factor.
-
-The original motivation of this study was to reinterpret ordinary three-dimensional space by lifting the position-dependent rate of proper time into an additional graph coordinate. In that sense one may visualize a point as
+the lapse gives the ratio between proper time and the coordinate time adapted to the static Killing field,
 
 $$
-(x,y,z,N),
+N=\frac{d\tau}{dt}.
 $$
 
-where the fourth coordinate is not interpreted as a new physical spatial dimension, but as an auxiliary representation of the redshift field.
+It is therefore simultaneously a clock-rate field and a gravitational redshift factor. In stationary settings, closely related redshift potentials and their level sets have been used to define isochronometric surfaces and relativistic geoids [5,6]. In exact black-hole geometries, the lapse and its gradient have likewise been employed as simple invariant diagnostics of the gravitational field; in particular, Semerák and Basovník used the lapse and its gradient to study the geometry of a Majumdar-Papapetrou (MP) binary [4].
 
-The physically meaningful research question is therefore:
+The present work focuses on a different aspect of the same scalar field: its critical-point and gradient-flow organization. The motivating question is whether the global structure of a static multi-source gravitational field can be characterized not only by lapse values or level surfaces, but also by the locations and Morse indices of finite critical points, together with their stable and unstable manifolds and the separatrix structure of the associated gradient flow.
 
-> Can the lapse/redshift field of a static gravitational system be classified globally through its finite critical points, Morse indices, gradient flows, stable and unstable manifolds, and heteroclinic connections?
-
-This question goes beyond a simple visualization of equal-lapse surfaces. The four-acceleration of a static observer satisfies
+Majumdar-Papapetrou spacetimes provide an exact setting in which this question becomes tractable. The MP class was introduced independently by Majumdar and Papapetrou [1,2] and interpreted as equilibrium configurations of extremally charged black holes by Hartle and Hawking [3]. In isotropic coordinates,
 
 $$
-a_i=c^2D_i\ln N,
-$$
-
-so the spatial gradient of \(N\) is directly related to the proper acceleration required to remain static.
-
-The present work studies this structure in exact Majumdar-Papapetrou multi-black-hole spacetimes. The MP family is particularly suitable because the lapse is
-
-$$
-N=U^{-1},
+ds^2
+=
+-U^{-2}dt^2
++
+U^2d\mathbf{x}^2,
 $$
 
 with
@@ -109,32 +102,212 @@ with
 $$
 U(\mathbf{x})
 =
-1+\sum_a\frac{M_a}{|\mathbf{x}-\mathbf{x}_a|}.
+1+\sum_a\frac{M_a}{|\mathbf{x}-\mathbf{x}_a|},
+\qquad
+N=U^{-1}.
 $$
 
-This makes the critical-point structure analytically tractable while retaining a fully relativistic exact solution.
+Consequently,
 
-The main contributions of this work are:
+$$
+\nabla N
+=
+-U^{-2}\nabla U,
+$$
 
-1. We define a **gravitational gradient skeleton** based on lapse critical points, Morse indices, separatrices, heteroclinic connectivity, and source/horizon basins.
-2. We derive two exact bifurcation values for the equilateral MP three-center family \((1,1,\lambda)\).
-3. We show that the finite lapse critical structure changes as
+and the finite critical points of the lapse coincide exactly with the equilibrium points of the corresponding positive Coulomb potential. This observation places the mathematical core of the problem within the classical point-charge equilibrium literature associated with Maxwell's conjecture.
+
+That literature is substantial. Gabrielov, Novikov, and Shapiro studied dimension-independent bounds for critical points of point-charge potentials and related the problem to Voronoi structures [7]. Tsai proved sharp results for special three-charge configurations, including the equilateral case, and later gave a rigorous classification for three equal-magnitude charges under positional variation using symbolic and exact integer computation [8,9]. Uteshev and Goncharova investigated stationary points and parameter-domain bifurcation pictures for positive Coulomb charges with fixed source positions [10]. These works make it clear that neither the equilateral three-charge problem, charge-ratio variation, nor equilibrium-point bifurcation is new in itself.
+
+Accordingly, the contribution of the present paper is deliberately narrower. We restrict the previously studied equilateral charge-ratio parameter space to the physically distinguished MP mass-ratio section
+
+$$
+(M_1,M_2,M_3)=(1,1,\lambda),
+$$
+
+with the three centers fixed at the vertices of an equilateral triangle, and reinterpret this section as a family of relativistic lapse fields. For this slice we derive explicit closed-form intersections with the local degeneracy set, classify the corresponding three-dimensional lapse Morse indices, derive local pitchfork and fold normal forms, and analyze the symmetry-broken family
+
+$$
+(M_1,M_2,M_3)
+=
+(1+\varepsilon,1-\varepsilon,\lambda).
+$$
+
+The resulting cusp unfolding is compared directly with the full MP equations. The local bifurcation inequalities, representative root counts, Morse-index assignments, and cusp scaling are independently reproduced using outward-rounded interval arithmetic and arbitrary-precision ball arithmetic.
+
+For organization and physical interpretation, we refer to the collection of lapse critical points, their Morse indices and critical values, invariant manifolds, heteroclinic connections, and basin information as the **gravitational gradient skeleton**. This term is not intended to define a new topological theory. Rather, it is a physics-specific descriptor built from standard Morse and gradient-flow data. In particular, it is conceptually close to the information encoded by a Morse-Smale complex [11], while differing from contour-tree and Reeb-type representations, which primarily summarize level-set connectivity [12].
+
+The main results are:
+
+1. two explicit critical mass ratios,
 
    $$
-   2S_1
-   \longrightarrow
-   3S_1+S_2
-   \longrightarrow
-   2S_1.
+   \lambda_-
+   =
+   0.673877474470738\ldots,
+   \qquad
+   \lambda_+
+   =
+   1.136252210664681\ldots,
    $$
 
-4. We certify representative phase structures using interval arithmetic and Krawczyk-type validated root isolation.
-5. We extend the analysis to the asymmetric family \((1+\varepsilon,1-\varepsilon,\lambda)\), obtaining a cusp unfolding and a validated \(2/3\)-power scaling.
-6. We compare the gradient skeleton with contour/Reeb-type scalar-field representations.
+   at which the symmetric MP family undergoes local critical-point bifurcations;
+
+2. a certified local transition
+
+   $$
+   S_1
+   \longrightarrow
+   S_2+2S_1
+   $$
+
+   at \(\lambda_-\), generated by a symmetry-breaking pitchfork;
+
+3. a certified local transition
+
+   $$
+   S_1+S_2
+   \longrightarrow
+   \varnothing
+   $$
+
+   at \(\lambda_+\), generated by a fold;
+
+4. complete, independently certified finite critical sets at the representative values
+
+   $$
+   \lambda=0.5,\quad 0.8,\quad 1.2,
+   $$
+
+   with structures
+
+   $$
+   2S_1,\qquad 3S_1+S_2,\qquad 2S_1;
+   $$
+
+5. an imperfect-pitchfork/cusp unfolding for
+
+   $$
+   (1+\varepsilon,1-\varepsilon,\lambda),
+   $$
+
+   with the asymptotic law
+
+   $$
+   \lambda_{\rm fold}(\varepsilon)-\lambda_-
+   \sim
+   C|\varepsilon|^{2/3},
+   \qquad
+   C=1.58535311676\ldots;
+   $$
+
+6. an explicit separation between what is fully certified and what remains open: the local bifurcations, representative phase completeness, and cusp scaling are certified, whereas a global exclusion of all off-axis degeneracies and both asymptotic parameter tails is not yet claimed.
+
+This scope is intentionally conservative. The purpose is not to restate the classical Coulomb equilibrium problem in relativistic language, but to identify which additional structures become physically and mathematically useful when that problem is interpreted as the critical topology of a black-hole lapse field.
+
+
+A particularly important distinction is between **equilibrium-count novelty** and **local-structure novelty**. The former is not claimed here: Tsai's \(1:s:t\) equilateral parameter plane already contains the present \(s=1,\ t=\lambda\) family. The latter is the focus of this paper: the explicit one-parameter degeneracy coordinates, their relativistic three-dimensional Morse interpretation, the local pitchfork/fold normal forms, the symmetry-breaking cusp coefficient, and the independent validated-numerics certificates.
 
 ---
 
-## 2. Lapse Graphs and Gravitational Gradient Skeletons
+## 2. Related Work and Positioning
+
+### 2.1 Majumdar-Papapetrou spacetimes and lapse-based geometry
+
+Majumdar [1] and Papapetrou [2] introduced the static Einstein-Maxwell class now known as the Majumdar-Papapetrou family. Hartle and Hawking [3] subsequently showed how these solutions can be analytically extended and interpreted as multiple extremally charged black holes in equilibrium.
+
+The use of the lapse and its spatial gradient as geometric diagnostics in exact static black-hole spacetimes is also established. Semerák and Basovník [4], in a detailed study of an MP binary, explicitly treated the lapse as one of the simplest scalar quantities determined by the metric and its gradient as a measure of gravitational acceleration, and visualized their level surfaces. The present work therefore does not claim novelty for the use of \(N\) or \(\nabla N\) themselves. The distinction is that we focus on finite critical points, their three-dimensional Morse indices, and the invariant-manifold structure of the gradient flow as functions of the MP source parameters.
+
+### 2.2 Redshift potentials and isochronometric surfaces
+
+The physical interpretation of a stationary lapse-like potential as a redshift or clock-rate potential is likewise well established. Philipp, Perlick, Puetzfeld, Hackmann, and Lämmerzahl [5] formulated the relativistic geoid in terms of level sets of a time-independent redshift potential and showed its equivalence to an acceleration potential for the relevant stationary observer congruence. Philipp et al. [6] further developed the relativistic gravity-potential viewpoint and its relation to clock comparison and geodesy.
+
+Our use of the lapse as a redshift field should be understood within this framework. The new question addressed here is not whether such a potential exists, but how its critical topology changes in an exact multi-black-hole solution as the source parameters vary.
+
+### 2.3 Point-charge equilibria and Maxwell's problem
+
+Because
+
+$$
+N=U^{-1},
+\qquad
+\nabla N=0
+\iff
+\nabla U=0,
+$$
+
+the finite critical points of the MP lapse are mathematically identical to equilibrium points of a positive Coulomb potential. This connection makes the literature surrounding Maxwell's point-charge problem directly relevant.
+
+Gabrielov, Novikov, and Shapiro [7] established dimension-independent bounds for point-charge potentials using fewnomial methods and proposed a Voronoi-based conjectural picture. The classical global Maxwell bound should now be treated historically rather than as an open conjecture: a 2026 five-charge construction by Arathoon, Ball, and Kvalheim gives at least 24 nondegenerate critical points, exceeding the conjectured bound of \(16\) for five charges [16]. This recent counterexample does not alter the special three-charge results relevant here, but it changes the broader historical framing of the literature. Tsai's 2011 work is particularly close to the present setting. In the equilateral case, Tsai parameterized the three charge values by the ratio
+
+$$
+1:s:t
+$$
+
+and reduced the equilibrium equations to a two-variable polynomial system depending on the two parameters \(s\) and \(t\) [8,14]. The corresponding parameter space was analyzed by exact real-root-counting methods, with regions containing two or four positive roots and a bifurcation set separating them [14]. Consequently, after a relabeling of the equal sources if necessary, the family studied in the present paper,
+
+$$
+(1,1,\lambda),
+$$
+
+is the one-dimensional section
+
+$$
+s=1,\qquad t=\lambda
+$$
+
+of a previously studied two-parameter equilateral charge-ratio family.
+
+This observation substantially narrows the novelty claim of the present work. In particular, neither the existence of a two-versus-four equilibrium transition nor the use of charge strengths as bifurcation parameters is new. The sequence of equilibrium counts encountered along the present one-dimensional slice should be regarded as a specialization of the broader parameter-plane picture studied by Tsai.
+
+Tsai's later work [9] considered the complementary problem in which the charge magnitudes are fixed while the source configuration varies, and rigorously classified the possible numbers of isolated equilibria using symbolic and exact integer computation. Uteshev and Yashina [10] likewise studied stationary points of Coulomb potentials generated by positive fixed-position charges and investigated bifurcation pictures in parameter domains. More recently, Lee and Tsai [15] used charge values as parameters for a four-charge planar problem and computed bifurcation curves separating regions with different equilibrium counts.
+
+The present contribution is therefore not an equilibrium-count theorem for equilateral point charges. Instead, we focus on the additional structure obtained when this classical equilibrium problem is interpreted as the critical topology of an exact relativistic lapse field. Specifically, we:
+
+1. isolate the symmetric section \(s=1,\ t=\lambda\) as an MP mass-ratio family;
+2. derive closed-form locations of its two local degeneracies;
+3. identify the associated three-dimensional lapse Morse-index changes;
+4. classify the local singularities as a pitchfork and a fold through explicit normal-form coefficients;
+5. unfold the reflection-symmetric problem with the asymmetric family \((1+\varepsilon,1-\varepsilon,\lambda)\);
+6. derive and validate the resulting cusp scaling; and
+7. independently certify the local bifurcations and representative complete critical sets using outward-rounded interval arithmetic and arbitrary-precision ball arithmetic.
+
+A direct literature cross-check is important here. Tsai's dissertation explicitly contains the enclosing \(1:s:t\) equilateral parameter family and its two-root/four-root regions [14]. We did not find the particular closed forms
+
+$$
+\lambda_-=
+0.673877474470738\ldots,
+\qquad
+\lambda_+=
+1.136252210664681\ldots
+$$
+
+tabulated in the sources reviewed. However, because they arise on a one-dimensional section of Tsai's already analyzed bifurcation set, we do **not** claim absolute priority for the existence of these transition values. Our claim is limited to deriving these intersections explicitly in closed form, interpreting their local singularity type and three-dimensional lapse Morse structure, and validating the resulting statements independently.
+
+### 2.4 Morse-Smale and level-set representations
+
+The mathematical ingredients used in the gravitational gradient skeleton are standard. Morse and Morse-Smale theory organize a scalar field through critical points and their ascending and descending manifolds. In computational topology, Edelsbrunner, Harer, Natarajan, and Pascucci [11] described the Morse-Smale complex of a Morse function on a three-manifold as the overlay of its ascending and descending manifolds.
+
+Contour trees and Reeb-type structures capture complementary information. Carr, Snoeyink, and Axen [12] developed efficient contour-tree computation in arbitrary dimensions; such structures summarize how connected components of level sets appear, merge, and disappear.
+
+The terminology "gravitational gradient skeleton" is therefore used only as an application-specific bundle of standard objects,
+
+$$
+\mathcal S_N=(C,I,V,\Gamma,\mathcal B),
+$$
+
+rather than as a claim of a new topological construction. The purpose of Section 13 is to compare the information retained by this descriptor with level-set-based summaries in the specific MP examples considered here.
+
+### 2.5 Validated numerics
+
+The computer-assisted portions of this work use two complementary validated-numerics paradigms. Interval arithmetic provides outward-rounded enclosures for inequalities and root-isolation arguments, while arbitrary-precision ball arithmetic provides independent high-precision enclosures for constants and nondegeneracy coefficients. Arb, developed by Johansson [13], implements midpoint-radius arbitrary-precision ball arithmetic and is used here as an independent numerical cross-check.
+
+This differs from, but does not supersede, the rigorous symbolic and exact-algebraic computations used in earlier point-charge studies such as Tsai [9]. The methodological contribution here is the independent reproduction of local bifurcation inequalities, Krawczyk-style existence/uniqueness certificates, and representative critical-point completeness within the MP parameter family.
+
+---
+
+## 3. Lapse Graphs and Gravitational Gradient Skeletons
+
 
 Consider a static spacetime with metric
 
@@ -186,7 +359,7 @@ $$
 
 This construction does **not** introduce a new physical dimension. It is only an auxiliary embedding used to represent the scalar field geometrically.
 
-### Definition 2.1. Gravitational Gradient Skeleton
+### Definition 3.1. Gravitational Gradient Skeleton
 
 We define the gravitational gradient skeleton of the lapse field as
 
@@ -208,7 +381,7 @@ This descriptor contains more information than basin adjacency alone.
 
 ---
 
-## 3. Physical Meaning of the Lapse Gradient
+## 4. Physical Meaning of the Lapse Gradient
 
 For a static observer, the four-acceleration satisfies
 
@@ -277,7 +450,7 @@ $$
 
 ---
 
-## 4. Majumdar-Papapetrou Spacetimes
+## 5. Majumdar-Papapetrou Spacetimes
 
 The Majumdar-Papapetrou metric can be written as
 
@@ -333,7 +506,7 @@ the physical and Euclidean gradient fields differ only by a positive scalar fact
 
 ---
 
-## 5. Binary Majumdar-Papapetrou Case
+## 6. Binary Majumdar-Papapetrou Case
 
 Consider two masses \(M_1\) and \(M_2\) located at \(x=-1\) and \(x=1\).
 
@@ -368,7 +541,7 @@ $$
 
 ---
 
-## 6. Equilateral Three-Center Family
+## 7. Equilateral Three-Center Family
 
 Place the three sources at
 
@@ -425,9 +598,9 @@ and Morse index 2, while the other three critical points are symmetry-related Mo
 
 ---
 
-## 7. Exact Bifurcation Analysis
+## 8. Exact Bifurcation Analysis
 
-### 7.1 Symmetry-Adapted Coordinates
+### 8.1 Symmetry-Adapted Coordinates
 
 Let \(r\) be the coordinate along the symmetry axis through \(P_1\), and let \(t\) be the transverse coordinate in the source plane.
 
@@ -478,7 +651,7 @@ the system has an exact \(\mathbb Z_2\) reflection symmetry.
 
 ---
 
-### 7.2 First Bifurcation: Symmetry-Breaking Pitchfork
+### 8.2 First Bifurcation: Symmetry-Breaking Pitchfork
 
 On the symmetry axis, the critical branch satisfies
 
@@ -578,7 +751,7 @@ $$
 
 ---
 
-### 7.3 Second Bifurcation: Fold
+### 8.3 Second Bifurcation: Fold
 
 The second critical parameter is obtained at
 
@@ -640,7 +813,7 @@ $$
 
 ---
 
-## 8. Symmetry Breaking and Cusp Unfolding
+## 9. Symmetry Breaking and Cusp Unfolding
 
 We now perturb the masses as
 
@@ -748,7 +921,7 @@ $$
 
 ---
 
-## 9. Gradient-Skeleton Visualization
+## 10. Gradient-Skeleton Visualization
 
 The following figure compares the planar lapse-gradient skeleton in three representative phases:
 
@@ -774,9 +947,9 @@ The asymmetric phase diagram is shown below.
 
 ---
 
-## 10. Validated Numerics
+## 11. Validated Numerics
 
-### 10.1 Independently Reproduced Results
+### 11.1 Independently Reproduced Results
 
 The following results were independently reproduced using outward-rounded interval arithmetic and arbitrary-precision ball arithmetic:
 
@@ -796,7 +969,7 @@ The off-axis global exclusion and asymptotic tail slabs remain open.
 
 ---
 
-### 10.2 Representative Completeness Certificates
+### 11.2 Representative Completeness Certificates
 
 At the three representative values,
 
@@ -843,7 +1016,7 @@ No unresolved boxes remained at the representative parameter values.
 
 ---
 
-### 10.3 Brouwer Index and Boundary Winding
+### 11.3 Brouwer Index and Boundary Winding
 
 The sum of the Brouwer indices of the finite regular critical points is
 
@@ -865,7 +1038,7 @@ This resolves the distinction between the index sum of regular finite critical p
 
 ---
 
-### 10.4 Certified Local Pitchfork Monotonicity
+### 11.4 Certified Local Pitchfork Monotonicity
 
 To avoid the removable singularity associated with \(U_t/t\) at \(t=0\), define
 
@@ -976,9 +1149,9 @@ This gives uniqueness of the positive off-axis branch in \(s\), and hence exactl
 
 ---
 
-## 11. Main Certified Results
+## 12. Main Certified Results
 
-### Theorem 11.1. Certified Local Pitchfork Bifurcation
+### Theorem 12.1. Certified Local Pitchfork Bifurcation
 
 For the equilateral three-center MP family
 
@@ -1025,7 +1198,7 @@ $$
 
 ---
 
-### Theorem 11.2. Certified Local Fold Bifurcation
+### Theorem 12.2. Certified Local Fold Bifurcation
 
 A generic fold bifurcation occurs at
 
@@ -1069,7 +1242,7 @@ $$
 
 ---
 
-### Proposition 11.3. Certified Representative Phases
+### Proposition 12.3. Certified Representative Phases
 
 The complete finite critical structures at the representative parameters are
 
@@ -1095,7 +1268,7 @@ $$
 
 ---
 
-### Corollary 11.4. Partially Certified Phase Pattern
+### Corollary 12.4. Partially Certified Phase Pattern
 
 The analytic bifurcation structure, certified local bifurcations, complete representative critical sets, and validated on-axis middle-slab analysis jointly support the phase pattern
 
@@ -1117,7 +1290,7 @@ is not yet claimed because off-axis degeneracy exclusion and the asymptotic tail
 
 ---
 
-## 12. Comparison with Contour and Reeb Representations
+## 13. Comparison with Contour and Reeb Representations
 
 Contour trees and Reeb graphs provide powerful representations of scalar-field level-set connectivity.
 
@@ -1196,7 +1369,88 @@ A future fully quantitative comparison should compare, for the same parameter sw
 
 ---
 
-## 13. Discussion
+
+## 14. Literature Cross-Check of the Equilateral Parameter Slice
+
+The closest prior result to the present one-parameter family is Tsai's analysis of fixed equilateral three-charge configurations. In that work the charge ratio is written as
+
+$$
+1:s:t,
+$$
+
+and the equilibrium equations are converted to a parametric polynomial system. For the equilateral geometry, Tsai's equations \(f_9=f_{10}=0\) depend on \(s\) and \(t\), and the parameter plane is partitioned into regions with two or four positive roots [14].
+
+The present MP family corresponds, up to relabeling of the vertices, to
+
+$$
+s=1,\qquad t=\lambda.
+$$
+
+Thus the observed critical-count sequence
+
+$$
+2\longrightarrow4\longrightarrow2
+$$
+
+is not presented here as a new point-charge counting result. Rather, the new analysis concerns what happens **at the two intersections of this line with the bifurcation set**.
+
+For the symmetric MP reduction used in this paper, those intersections can be parameterized directly by the axial coordinate \(r\). The first degeneracy satisfies
+
+$$
+2r^2+5r-1=0,
+$$
+
+with the relevant root
+
+$$
+r_-=\frac{-5+\sqrt{33}}{4},
+$$
+
+and gives
+
+$$
+\lambda_-=
+\frac{(2r_-+1)(1-r_-)^2}
+{(r_-^2+r_-+1)^{3/2}}
+=
+0.673877474470738\ldots.
+$$
+
+The second degeneracy satisfies
+
+$$
+4r^2+7r+1=0,
+$$
+
+with
+
+$$
+r_+=\frac{-7+\sqrt{33}}{8},
+$$
+
+and gives
+
+$$
+\lambda_+=
+\frac{(2r_++1)(1-r_+)^2}
+{(r_+^2+r_++1)^{3/2}}
+=
+1.136252210664681\ldots.
+$$
+
+In the literature reviewed for this manuscript, including Tsai's dissertation-level parameter-plane analysis, we found the enclosing equilateral classification but did not find these two \(s=1\) intersections stated in the above closed forms. We likewise did not find, for this MP slice, a classification of the two crossings as a three-dimensional lapse pitchfork and fold together with the normal-form coefficients and validated interval certificates used here. Because Tsai already analyzed the full enclosing \(1:s:t\) discriminant problem, however, this paper deliberately avoids claiming that the transition values were previously unknown in an implicit algebraic sense. The defensible claim is that the present work makes these intersections explicit for the MP slice and adds the relativistic Morse, local-singularity, cusp-unfolding, and validated-numerics structure.
+
+The distinction is therefore:
+
+- **previously established:** the equilateral \(1:s:t\) parameter family, rigorous root counting, and the two-root/four-root bifurcation picture;
+- **developed here:** an explicit MP one-parameter section, closed-form degeneracy coordinates on that section, the corresponding three-dimensional lapse Morse-index transition, local singularity normal forms, the asymmetric cusp unfolding, and independent validated certificates.
+
+This positioning is used throughout the paper.
+
+---
+
+## 15. Discussion
+
 
 The original intuition behind this study was to reinterpret gravitationally distorted space through the spatial variation of proper-time flow.
 
@@ -1229,7 +1483,7 @@ These corrections strengthen the credibility of the final formulation.
 
 ---
 
-## 14. Limitations and Open Problems
+## 16. Limitations and Open Problems
 
 The main unresolved issue is the global exclusion of additional off-axis degeneracies over the entire parameter range.
 
@@ -1255,7 +1509,7 @@ A natural mathematical question is therefore:
 
 ---
 
-## 15. Conclusion
+## 17. Conclusion
 
 We introduced a lapse-gradient topological framework for static multi-source spacetimes and applied it to Majumdar-Papapetrou multi-black-hole geometries.
 
@@ -1295,7 +1549,7 @@ A complete global phase theorem remains open pending full off-axis and tail-slab
 
 ---
 
-## 16. Validated-Numerics Scope Statement
+## 18. Validated-Numerics Scope Statement
 
 The current validated-numerics scope is summarized by the following statement:
 
@@ -1303,7 +1557,7 @@ The current validated-numerics scope is summarized by the following statement:
 
 ---
 
-## 17. Figure Files
+## 19. Figure Files
 
 The following figure files are referenced by this Markdown document:
 
@@ -1323,3 +1577,42 @@ paper/
 ```
 
 If the figures are moved into a `figures/` directory, update the Markdown image references accordingly.
+
+---
+
+## 20. References
+
+[1] S. D. Majumdar, “A Class of Exact Solutions of Einstein’s Field Equations,” *Physical Review*, vol. 72, pp. 390–398, 1947. doi: 10.1103/PhysRev.72.390.
+
+[2] A. Papapetrou, “A Static Solution of the Equations of the Gravitational Field for an Arbitrary Charge Distribution,” *Proceedings of the Royal Irish Academy, Section A*, vol. 51, pp. 191–204, 1947.
+
+[3] J. B. Hartle and S. W. Hawking, “Solutions of the Einstein-Maxwell Equations with Many Black Holes,” *Communications in Mathematical Physics*, vol. 26, pp. 87–101, 1972. doi: 10.1007/BF01645696.
+
+[4] O. Semerák and M. Basovník, “On Geometry of Deformed Black Holes: I. Majumdar-Papapetrou Binary,” *Physical Review D*, vol. 94, 044006, 2016.
+
+[5] D. Philipp, V. Perlick, D. Puetzfeld, E. Hackmann, and C. Lämmerzahl, “Definition of the Relativistic Geoid in Terms of Isochronometric Surfaces,” *Physical Review D*, vol. 95, 104037, 2017.
+
+[6] D. Philipp, E. Hackmann, C. Lämmerzahl, and J. Müller, “The Relativistic Geoid: Gravity Potential and Relativistic Effects,” *Physical Review D*, vol. 101, 064032, 2020.
+
+[7] A. Gabrielov, D. Novikov, and B. Shapiro, “Mystery of Point Charges,” *Proceedings of the London Mathematical Society*, vol. 95, no. 2, pp. 443–472, 2007.
+
+[8] Y.-L. Tsai, “Special Cases of Three Point Charges,” *Nonlinearity*, vol. 24, pp. 3299–3321, 2011. doi: 10.1088/0951-7715/24/12/002.
+
+[9] Y.-L. Tsai, “Maxwell’s Conjecture on Three Point Charges with Equal Magnitudes,” *Physica D: Nonlinear Phenomena*, vol. 309, pp. 86–98, 2015. doi: 10.1016/j.physd.2015.07.007.
+
+[10] A. Yu. Uteshev and M. V. Yashina, “On Maxwell’s Conjecture for Coulomb Potential Generated by Point Charges,” in *Transactions on Computational Science XXVII*, Lecture Notes in Computer Science, vol. 9570, pp. 68–80, Springer, 2016. doi: 10.1007/978-3-662-50412-3_5.
+
+[11] H. Edelsbrunner, J. Harer, V. Natarajan, and V. Pascucci, “Morse-Smale Complexes for Piecewise Linear 3-Manifolds,” in *Proceedings of the 19th Annual Symposium on Computational Geometry*, pp. 361–370, 2003. doi: 10.1145/777792.777846.
+
+[12] H. Carr, J. Snoeyink, and U. Axen, “Computing Contour Trees in All Dimensions,” *Computational Geometry*, vol. 24, no. 2, pp. 75–94, 2003. doi: 10.1016/S0925-7721(02)00093-7.
+
+[13] F. Johansson, “Arb: Efficient Arbitrary-Precision Midpoint-Radius Interval Arithmetic,” *IEEE Transactions on Computers*, vol. 66, no. 8, pp. 1281–1292, 2017.
+
+
+
+[14] Y.-L. Tsai, *Real Root Counting for Parametric Polynomial Systems and Applications*, Ph.D. dissertation, University of Minnesota, 2011.
+
+[15] T.-L. Lee and Y.-L. Tsai, “Nine Equilibrium Points of Four Point Charges on the Plane,” *Applied Mathematics Letters*, vol. 132, 108207, 2022. doi: 10.1016/j.aml.2022.108207.
+
+[16] P. Arathoon, G. Ball, and M. D. Kvalheim, “The Maxwell Conjecture is False,” arXiv:2607.27197, 2026. doi: 10.48550/arXiv.2607.27197.
+
