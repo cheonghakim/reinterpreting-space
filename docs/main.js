@@ -642,7 +642,15 @@ function refresh(lambda, eps) {
   countsEl.textContent = line;
 }
 
-slider.addEventListener("input", () => refresh(parseFloat(slider.value), parseFloat(epsSlider.value)));
+slider.addEventListener("input", () => {
+  // Keep the Sweep animation's own lambda in sync with a manual drag —
+  // otherwise the next requestAnimationFrame(playStep) tick recomputes from
+  // the stale pre-drag value and immediately snaps the slider back to where
+  // the animation was, making a manual drag during playback look like it
+  // does nothing.
+  playLambda = parseFloat(slider.value);
+  refresh(playLambda, parseFloat(epsSlider.value));
+});
 epsSlider.addEventListener("input", () => {
   basinCacheKey = null;
   refresh(parseFloat(slider.value), parseFloat(epsSlider.value));
