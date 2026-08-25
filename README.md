@@ -1,6 +1,6 @@
-# validated_mp
+# Validated Numerics for Majumdar–Papapetrou Lapse Bifurcations
 
-Independent, outward-rounded validated-numerics reproduction of the
+`validated_mp` — independent, outward-rounded validated-numerics reproduction of the
 Majumdar–Papapetrou (MP) three-center lapse critical-point results
 (symmetric family `(M1,M2,M3)=(1,1,λ)` and asymmetric family
 `(1+ε,1-ε,λ)`), built independently of the original Python/SymPy/mpmath.iv
